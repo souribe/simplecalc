@@ -14,38 +14,56 @@ public class Calculator {
     public func calculate(_ args: [String]) -> Int {
         print(args)
         var count : Int = 0
-        let input : [String] = args
+        var input : [String] = args
         for _ in input {
             count += 1
         }
         if count == 3 {
             let input1 : Int = Int(input[0])!
-            let input2: Int = Int(input[2])!
+            let input2 : Int = Int(input[2])!
             switch input[1] {
-                case "+":
-                    return (input1 + input2)
-                case "-":
-                    return (input1 - input2)
-                case "*":
-                    return (input1 * input2)
-                case "/":
-                    return (input1 / input2)
-                default:
-                    return (input1 % input2)
+            case "+":
+                return (input1 + input2)
+            case "-":
+                return (input1 - input2)
+            case "*":
+                return (input1 * input2)
+            case "/":
+                return (input1 / input2)
+            case "%":
+                return (input1 % input2)
+            default:
+                print("Did not input correct operation")
+                return 0
             }
         } else {
             count = count - 1
+            if count == 0 { // if no input, return 0
+                return 0
+            }
             switch input[count] {
             case "count":
                 return count
             case "avg":
-//                let total : Int = 0
-//                for num in input {
-//                    total +=
-//                }
-                return 2
+                input.removeLast()
+                var total = 0
+                for num in input {
+                    total += Int(num)!
+                }
+                return total / count
             case "fact":
-                return 3
+                var number : Int = Int(input[0])!
+                var total = 1
+    
+                if number == 0 || number == 1 { // "0", "1" "fact"
+                    return 1
+                }
+                
+                while number != 0 {
+                    total *= number
+                    number -= 1
+                }
+                return total
             default:
                 return 0
             }
