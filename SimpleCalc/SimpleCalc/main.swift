@@ -65,6 +65,7 @@ public class Calculator {
                 }
                 return total
             default:
+                print("Not a proper expression")
                 return 0
             }
         }
