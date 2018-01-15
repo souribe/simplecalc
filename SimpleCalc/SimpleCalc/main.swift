@@ -12,7 +12,7 @@ import Foundation
 
 public class Calculator {
     public func calculate(_ args: [String]) -> Int {
-        print(args)
+        
         var count : Int = 0
         var input : [String] = args
         for _ in input {
