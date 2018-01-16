@@ -13,6 +13,31 @@ class ExtendedCalcTests :XCTestCase {
     
     func testNegativeOps() {
         XCTAssert(calc.calculate(["2", "+", "-12"]) == -10)
+        XCTAssert(calc.calculate(["2", "-", "-2"]) == 4)
+        XCTAssert(calc.calculate(["2", "*", "-2"]) == -4)
+        XCTAssert(calc.calculate(["2", "/", "-2"]) == -1)
+        
+        XCTAssert(calc.calculate(["3", "%", "-2"]) == -1)
+        XCTAssert(calc.calculate(["-3", "%", "-2"]) == 1)
+        XCTAssert(calc.calculate(["-3", "%", "2"]) == -1)
+    }
+    
+    func testNegativeCountOps() {
+        XCTAssert(calc.calculate(["-1", "-2", "-3", "count"]) == 3)
+        XCTAssert(calc.calculate(["-1", "-2", "-3", "-4", "-5", "count"]) == 5)
+    }
+    
+    func testNegativeAvgOps() {
+        XCTAssert(calc.calculate(["-1", "-2", "-3", "-4", "-5", "avg"]) == -3) // -15 / 5 = -3
+        XCTAssert(calc.calculate(["-2", "-2", "-4", "-4", "avg"]) == -3) // -12 / 4 = 3
+        XCTAssert(calc.calculate(["-2", "avg"]) == -2) // -2 / 1 = 2
+    }
+    
+    func testNegativeFactOps() { // negative factorials in math are not actually defined, but made it work anyway
+        XCTAssert(calc.calculate(["-1", "fact"]) == -1)
+        XCTAssert(calc.calculate(["-2", "fact"]) == 2) // -2*-1
+        XCTAssert(calc.calculate(["-5", "fact"]) == -120) // -5*-4*-3*-2*-1
+
     }
 }
 

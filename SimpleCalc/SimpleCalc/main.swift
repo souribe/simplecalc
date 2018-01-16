@@ -31,7 +31,11 @@ public class Calculator {
             case "/":
                 return (input1 / input2)
             case "%":
-                return (input1 % input2)
+                if (input1 > 0 && input2 < 0) || (input1 < 0 && input2 < 0) { //neg test case
+                    return  -1 * (input1 % input2)
+                } else {
+                    return (input1 % input2)
+                }
             default:
                 print("Did not input correct operation")
                 return 0
@@ -58,10 +62,16 @@ public class Calculator {
                 if number == 0 || number == 1 { // "0", "1" "fact"
                     return 1
                 }
-                
-                while number != 0 {
-                    total *= number
-                    number -= 1
+                if (number < 0) {   //test for neg ops
+                    while number != 0 {
+                        total *= number
+                        number += 1
+                    }
+                } else {
+                    while number != 0 {
+                        total *= number
+                        number -= 1
+                    }
                 }
                 return total
             default:
