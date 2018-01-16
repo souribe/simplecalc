@@ -15,11 +15,14 @@ class ExtendedCalcTests :XCTestCase {
         XCTAssert(calc.calculate(["2", "+", "-12"]) == -10)
         XCTAssert(calc.calculate(["2", "-", "-2"]) == 4)
         XCTAssert(calc.calculate(["2", "*", "-2"]) == -4)
-        XCTAssert(calc.calculate(["2", "/", "-2"]) == -1)
         
-        XCTAssert(calc.calculate(["3", "%", "-2"]) == -1)
-        XCTAssert(calc.calculate(["-3", "%", "-2"]) == 1)
-        XCTAssert(calc.calculate(["-3", "%", "2"]) == -1)
+        XCTAssert(calc.calculate(["2", "/", "-2"]) == -1)
+        XCTAssert(calc.calculate(["-2", "/", "-2"]) == 1)
+        XCTAssert(calc.calculate(["-2", "/", "2"]) == -1)
+        
+        XCTAssert(calc.calculate(["3", "%", "-2"]) == -1) //neg on input2
+        XCTAssert(calc.calculate(["-3", "%", "-2"]) == 1) //neg on both inputs
+        XCTAssert(calc.calculate(["-3", "%", "2"]) == -1) //neg on input1
     }
     
     func testNegativeCountOps() {
@@ -37,7 +40,14 @@ class ExtendedCalcTests :XCTestCase {
         XCTAssert(calc.calculate(["-1", "fact"]) == -1)
         XCTAssert(calc.calculate(["-2", "fact"]) == 2) // -2*-1
         XCTAssert(calc.calculate(["-5", "fact"]) == -120) // -5*-4*-3*-2*-1
-
+    }
+    
+    func testSingleStringSimpleOps() {
+        XCTAssert(calc.calculate("2 + -2") == 0)
+        XCTAssert(calc.calculate("2 * -2") == -4)
+        XCTAssert(calc.calculate("2 - -2") == 4)
+        XCTAssert(calc.calculate("2 / -2") == -1)
+        XCTAssert(calc.calculate("3 % -2") == -1)
     }
 }
 
