@@ -42,7 +42,7 @@ class ExtendedCalcTests :XCTestCase {
         XCTAssert(calc.calculate(["-5", "fact"]) == -120) // -5*-4*-3*-2*-1
     }
     
-    func testSingleStringSimpleOps() {
+    func testNegativeSingleStringSimpleOps() {
         XCTAssert(calc.calculate("2 + -2") == 0)
         XCTAssert(calc.calculate("2 * -2") == -4)
         XCTAssert(calc.calculate("2 - -2") == 4)
